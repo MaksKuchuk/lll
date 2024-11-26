@@ -1,22 +1,21 @@
 <template>
   <div id="game-container" :class="{ 'error-shake': isError }">
-    <div class="word-out-container">
-      <div id="word-container" :class="{ error: isError }">
-        <span
-          v-for="(letter, index) in currentWord"
-          :key="index"
-          :class="{ correct: index < typedWord.length }"
-        >
-          {{ letter }}
-        </span>
-      </div>
+    <div id="word-container" :class="{ error: isError }">
+      <span
+        v-for="(letter, index) in currentWord"
+        :key="index"
+        :class="{ correct: index < typedWord.length }"
+      >
+        {{ letter }}
+      </span>
     </div>
-      
-    <div id="character-cont">
-      <img src="@/assets/main_character.png" alt="Персонаж" class="player"/>
+    <div id="character">
+      <img src="@/assets/main_character.png" alt="Персонаж" />
     </div>
-
-    <!-- <button @click="endGame">Вернуться в меню</button> -->
+    <button @click="endGame">Вернуться в меню</button>
+    <div id="score-board">
+      Рекорд: {{ record }}
+    </div>
   </div>
 </template>
 
@@ -37,6 +36,7 @@ export default {
       currentWord: [],
       typedWord: "",
       isError: false,
+      record: 0, 
     };
   },
   methods: {
@@ -56,6 +56,7 @@ export default {
       if (input === this.currentWord[currentLetterIndex]) {
         this.typedWord += input;
         if (this.typedWord === this.currentWord.join("")) {
+          this.record++; 
           this.generateWord();
         }
       } else {
@@ -83,22 +84,8 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
-.player {
-  z-index: 100;
-  margin: auto;
-  width: 20vw;
-  height: 20vw;
-}
-#character-cont {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
 #game-container {
-  /* display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -111,17 +98,8 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   overflow: hidden;
-  font-family: "Press Start 2P", sans-serif; */
-
-  background-image: url("@/assets/background.png");
-  background-size: contain;
-  background-position: top;
-  background-repeat: no-repeat;
-
-  width: 100vw;
-  height: 75vw;
-
-  position:relative;
+  font-family: "Press Start 2P", sans-serif;
+  position: relative;
 }
 
 #game-container.error-shake {
@@ -146,22 +124,17 @@ export default {
   }
 }
 
-#word-out-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
 #word-container {
+  position: absolute;
+  top: 35%;
   font-size: 15px;
   line-height: 1;
   font-weight: 400;
   color: white;
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+  display: flex;
   gap: 5px;
-  margin:auto;
+  justify-content: center;
 }
 
 #word-container.error {
@@ -185,7 +158,7 @@ export default {
   color: green;
 }
 
-/* #character {
+#character {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -195,7 +168,7 @@ export default {
 #character img {
   width: 120px;
   height: auto;
-} */
+}
 
 button {
   margin-top: 20px;
@@ -212,5 +185,17 @@ button {
 
 button:hover {
   background-color: rgba(255, 255, 255, 1);
+}
+
+#score-board {
+  position: absolute;
+  bottom: 25px;
+  right: 30px;
+  font-size: 14px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-family: "Press Start 2P", sans-serif;
 }
 </style>
