@@ -1,4 +1,5 @@
 <template>
+  <link href='https://fonts.googleapis.com/css?family=Krona One' rel='stylesheet'>
   <div id="app">
     <MainMenu v-if="!isGameStarted" @start-game="startGame" @open-settings="openSettings" @exit-game="exitGame" />
     <GameComponent v-if="isGameStarted" @game-ended="endGame" />

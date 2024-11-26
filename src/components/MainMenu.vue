@@ -1,13 +1,14 @@
 <template>
   <div class="main-menu">
+    <div class="player-cont"><img src="@/assets/main_character.png" alt="Персонаж" class="player"/></div>
     <div id="button-container">
-      <div id="upper-container">
+      <div id="upper-container" class="btn-cont-div">
         <button class = "menu-button">Вход</button>
       </div>
-      <div id="middle-container">
+      <div id="middle-container" class="btn-cont-div">
         <button class = "menu-button">Таблица лидеров</button>
       </div>
-      <div id="bottom-container">
+      <div id="bottom-container" class="btn-cont-div">
         <div id="bottom-left">
           <button class = "menu-button" @click="openSettings">Настройки</button>
         </div>
@@ -45,30 +46,49 @@ export default {
 <style scoped>
 .main-menu {
   background-image: url("@/assets/background.png");
-  background-size: cover;
-  background-position: center;
+  background-size: contain;
+  background-position: top;
   background-repeat: no-repeat;
+
+  width: 100vw;
+  height: 75vw;
+
+  position:relative;
 }
-.main-menu {
+.player {
+  z-index: 100;
+  margin: auto;
+  width: 20vw;
+  height: 20vw;
+}
+.player-cont {
+  position: absolute;
+  width: 100%;
+  height: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-button {
-  margin: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
 }
 #button-container {
+  position: relative;
   display: flex;
   flex-direction: column;
-  bottom: 10px;
+  bottom: 50px;
+
+  padding-left: auto;
+  padding-right: auto;
+  width: 100%;
+
+  position: absolute;
+}
+.btn-cont-div {
+  padding-left: 15%;
+  padding-right: 15%;
+  margin-top: 10px;
 }
 #bottom-container {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 #middle-container {
   display: flex;
@@ -80,7 +100,7 @@ button {
 }
 .menu-button {
   background-color: #7B6E62;
-  font-size: 32;
+  font-size: 1.12em;
   border: #000000;
   border-radius: 15px;
   border-width: 100px;
@@ -89,6 +109,12 @@ button {
   stroke-width: 5px;
   border-color: #000000;
   box-shadow: 3px 3px 2px 1px #000000;
+
+  margin: 10px;
+  /* padding: 10px 20px; */
+  width: 20vw;
+  height: 6vw;
+  font-family: 'Krona One'
 }
 
 </style>
