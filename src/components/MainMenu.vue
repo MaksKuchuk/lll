@@ -100,21 +100,20 @@ export default {
 }
 .menu-button {
   background-color: #7B6E62;
-  font-size: 1.12em;
+  font-size: 1.1rem;
   border: #000000;
   border-radius: 15px;
   border-width: 100px;
-  width: 150px;
-  height: 50;
   stroke-width: 5px;
   border-color: #000000;
   box-shadow: 3px 3px 2px 1px #000000;
 
   margin: 10px;
   /* padding: 10px 20px; */
-  width: 20vw;
+  width: 23vw;
   height: 6vw;
-  font-family: 'Krona One'
+
+  font-family: 'Pixy';
 }
 
 </style>

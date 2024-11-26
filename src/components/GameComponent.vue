@@ -1,18 +1,22 @@
 <template>
   <div id="game-container" :class="{ 'error-shake': isError }">
-    <div id="word-container" :class="{ error: isError }">
-      <span
-        v-for="(letter, index) in currentWord"
-        :key="index"
-        :class="{ correct: index < typedWord.length }"
-      >
-        {{ letter }}
-      </span>
+    <div class="word-out-container">
+      <div id="word-container" :class="{ error: isError }">
+        <span
+          v-for="(letter, index) in currentWord"
+          :key="index"
+          :class="{ correct: index < typedWord.length }"
+        >
+          {{ letter }}
+        </span>
+      </div>
     </div>
-    <div id="character">
-      <img src="@/assets/main_character.png" alt="Персонаж" />
+      
+    <div id="character-cont">
+      <img src="@/assets/main_character.png" alt="Персонаж" class="player"/>
     </div>
-    <button @click="endGame">Вернуться в меню</button>
+
+    <!-- <button @click="endGame">Вернуться в меню</button> -->
   </div>
 </template>
 
@@ -79,8 +83,22 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
-#game-container {
+.player {
+  z-index: 100;
+  margin: auto;
+  width: 20vw;
+  height: 20vw;
+}
+#character-cont {
+  position: absolute;
+  width: 100%;
+  height: 100%;
   display: flex;
+  align-items: center;
+}
+
+#game-container {
+  /* display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -93,8 +111,17 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   overflow: hidden;
-  font-family: "Press Start 2P", sans-serif;
-  position: relative;
+  font-family: "Press Start 2P", sans-serif; */
+
+  background-image: url("@/assets/background.png");
+  background-size: contain;
+  background-position: top;
+  background-repeat: no-repeat;
+
+  width: 100vw;
+  height: 75vw;
+
+  position:relative;
 }
 
 #game-container.error-shake {
@@ -119,17 +146,22 @@ export default {
   }
 }
 
-#word-container {
+#word-out-container {
   position: absolute;
-  top: 35%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+#word-container {
   font-size: 15px;
   line-height: 1;
   font-weight: 400;
   color: white;
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
-  display: flex;
   gap: 5px;
-  justify-content: center;
+  margin:auto;
 }
 
 #word-container.error {
@@ -153,7 +185,7 @@ export default {
   color: green;
 }
 
-#character {
+/* #character {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -163,7 +195,7 @@ export default {
 #character img {
   width: 120px;
   height: auto;
-}
+} */
 
 button {
   margin-top: 20px;
